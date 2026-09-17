@@ -1,26 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-brand-orange: #FF6B00;
+  --color-brand-amber: #F59E0B;
+  --color-brand-gold: #FBBF24;
+  --color-brand-deep: #EA580C;
+  --color-brand-charcoal: #1E293B;
+  --color-brand-dark: #0F172A;
+  --color-brand-surface: #FFFDF9;
+  --color-brand-border: #FED7AA;
+
+  --color-kenz-orange: #FF6B00;
+  --color-kenz-amber: #F59E0B;
+  --color-kenz-primary: #FF6B00;
+  --color-kenz-dark: #0F172A;
+  --color-kenz-charcoal: #1E293B;
+  --color-kenz-gray: #64748B;
+  --color-kenz-surface: #FFFDF9;
+  --color-kenz-border: #E2E8F0;
+  --color-kenz-text-main: #0F172A;
+  --color-kenz-text-muted: #64748B;
+
+  --font-heading: "Outfit", "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Syne", "Outfit", sans-serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-heading: "Outfit", "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Syne", "Outfit", sans-serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #0F172A;
+  background-color: #FFFFFF;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-heading {
+  font-family: var(--font-heading) !important;
+}
+
+.font-display {
+  font-family: var(--font-display) !important;
+}
+
+.font-sans {
+  font-family: var(--font-sans) !important;
+}
+
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
+}
+
+/* Gradient text utility */
+.text-gradient-orange {
+  background-image: linear-gradient(135deg, #FF6B00 0%, #F59E0B 50%, #EA580C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background-image: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #FCD34D 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animated gradient underline for navigation */
+.nav-link-underline {
+  position: relative;
+}
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2.5px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #FF6B00, #F59E0B);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link-underline:hover::after,
+.nav-link-underline.active::after {
+  width: 100%;
+}
+
+/* Glassmorphism & Glow Effects */
+.glow-orange {
+  box-shadow: 0 0 35px -5px rgba(255, 107, 0, 0.25);
+}
+
+.glow-orange-sm {
+  box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.3);
+}
+
+/* Subtle architectural grid */
+.bg-warm-grid {
+  background-color: #FFFFFF;
+  background-image: 
+    linear-gradient(rgba(245, 158, 11, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px;
+}
+
+/* Smooth keyframe shine animation for CTA button */
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) rotate(45deg); }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: translateX(-100%) rotate(45deg);
+  transition: transform 0.6s ease;
+}
+.btn-shine:hover::before {
+  animation: shine 1.2s ease-in-out infinite;
 }
